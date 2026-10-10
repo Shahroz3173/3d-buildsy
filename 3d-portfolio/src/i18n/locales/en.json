@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "tiles": "Floor & Wall Tiles",
+    "sanitaryware": "Sanitaryware",
+    "visualizer": "Room Visualizer",
+    "collections": "Collections & Brands",
+    "visit": "Visit Showroom",
+    "about": "About",
+    "contact": "Get Quote",
+    "skip3d": "Classic View",
+    "back3d": "3D View",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "lang": "हिंदी"
+  },
+  "hero": {
+    "headline": "Tiles & Sanitaryware",
+    "subheadline": "Showroom in Dehradun",
+    "cta1": "Visit Showroom",
+    "cta2": "Try Room Visualizer",
+    "explorer": "EXPLORE",
+    "explorerSub": "Click a door to enter"
+  },
+  "tiles": {
+    "title": "Floor & Wall Tiles",
+    "desc": "Matt, Glossy, Wooden, Marble, Outdoor — hundreds of styles in-store",
+    "filter": "Filter by",
+    "allCategories": "All Categories",
+    "contactPrice": "Contact for price",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details"
+  },
+  "sanitaryware": {
+    "title": "Sanitaryware",
+    "desc": "Basins, WCs, Showers, Faucets and Bathroom Accessories"
+  },
+  "visualizer": {
+    "title": "Room Visualizer",
+    "desc": "See how tiles look in your room before you buy",
+    "selectRoom": "1. Select Room Type",
+    "selectTile": "2. Pick a Tile",
+    "preview": "3. Preview",
+    "previewPlaceholder": "AI Visualizer — integration coming soon (VisionRoom API)",
+    "tryNow": "Try Now"
+  },
+  "collections": {
+    "title": "Collections & Brands",
+    "search": "Search products...",
+    "noResults": "No products found"
+  },
+  "visit": {
+    "title": "Visit Our Showroom",
+    "address": "Address",
+    "hours": "Opening Hours",
+    "whatsapp": "Chat on WhatsApp",
+    "call": "Call Us",
+    "book": "Book a Showroom Visit",
+    "directions": "Get Directions"
+  },
+  "about": {
+    "title": "About BUILDsy",
+    "desc": "Honest pricing, quality products, and trusted delivery",
+    "faqTitle": "Frequently Asked Questions",
+    "returnPolicy": "Return & Refund Policy",
+    "deliveryInfo": "Delivery Information",
+    "quality": "Quality Assurance"
+  },
+  "contact": {
+    "title": "Get a Quote",
+    "name": "Your Name",
+    "phone": "Phone Number",
+    "city": "City",
+    "requirement": "What do you need?",
+    "budget": "Budget Range",
+    "submit": "Send Quote Request",
+    "whatsapp": "Quick Quote on WhatsApp",
+    "success": "Thank you! We'll call you within 24 hours.",
+    "error": "Something went wrong. Please try again."
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "payOnline": "Pay Online",
+    "payAtStore": "Pay at Store",
+    "paymentNote": "Secure payment via Razorpay (TODO: integration)",
+    "remove": "Remove",
+    "checkout": "Proceed to Checkout"
+  },
+  "common": {
+    "loading": "Loading…",
+    "close": "Close",
+    "back": "Back",
+    "readMore": "Read More",
+    "contactUs": "Contact Us",
+    "todo": "TODO — content to be filled by client"
+  }
+}
