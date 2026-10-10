@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
-  const { theme, toggleTheme, view, setView, activeSection, setActiveSection, cartCount, setCartOpen } = useStore()
+  const { theme, toggleTheme, activeSection, setActiveSection, cartCount, setCartOpen } = useStore()
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const toggleLang = () => i18n.changeLanguage(i18n.language === 'en' ? 'hi' : 'en')
@@ -25,8 +25,8 @@ export default function Navbar() {
 
         <div className="navbar-links">
           {!activeSection && (
-            <button className={`nav-link ${view === 'classic' ? 'active' : ''}`} onClick={() => setView(view === '3d' ? 'classic' : '3d')}>
-              {view === '3d' ? t('nav.skip3d') : t('nav.back3d')}
+            <button className="nav-link" onClick={() => { window.location.href = 'https://buildsy-demo.vercel.app/' }}>
+              {t('nav.skip3d')}
             </button>
           )}
         </div>
@@ -51,8 +51,8 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
         {!activeSection && (
-          <button className="nav-link" onClick={() => { setView(view === '3d' ? 'classic' : '3d'); setMobileOpen(false) }}>
-            {view === '3d' ? t('nav.skip3d') : t('nav.back3d')}
+          <button className="nav-link" onClick={() => { window.location.href = 'https://buildsy-demo.vercel.app/' }}>
+            {t('nav.skip3d')}
           </button>
         )}
       </div>

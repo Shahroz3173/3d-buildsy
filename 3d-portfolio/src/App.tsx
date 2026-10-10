@@ -55,7 +55,8 @@ function App() {
       {loaded && view === '3d' && !activeSection && (
         <div className="explorer-banner">
           <strong>{t('hero.explorer')}</strong>
-          {t('hero.explorerSub')} &nbsp;·&nbsp; Scroll inside
+          {t('hero.explorerSub')}<br />
+          <span>Wheel / W-S: move · A-D: strafe · drag: look · R-F: height</span>
         </div>
       )}
 
@@ -70,16 +71,39 @@ function App() {
             <div className="classic-view">
               
               {/* Classic Hero */}
-              <div className="classic-section" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
-                <div>
-                  <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5rem)' }}>BUILD<span style={{ color: 'var(--accent)' }}>sy</span></h1>
-                  <p style={{ fontSize: '1.2rem', color: 'var(--ink-muted)', marginTop: '0.5rem', fontFamily: 'var(--font-hand)' }}>{t('hero.headline')} — {t('hero.subheadline')}</p>
-                  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem', flexWrap: 'wrap' }}>
+              <section className="home-hero">
+                <div className="home-hero-copy">
+                  <div className="home-hero-eyebrow"><span /> BUILDsy · DEHRADUN</div>
+                  <h1>Make room<br />for <em>better living.</em></h1>
+                  <p className="home-hero-intro">{t('hero.headline')} — {t('hero.subheadline')}</p>
+                  <div className="home-hero-actions">
                     <button className="btn btn-primary" onClick={() => useStore.getState().setActiveSection('tiles')}>{t('hero.cta1')}</button>
                     <button className="btn btn-outline" onClick={() => useStore.getState().setActiveSection('visualizer')}>{t('hero.cta2')}</button>
                   </div>
+                  <div className="home-hero-meta">
+                    <span>Thoughtful tiles</span><i />
+                    <span>Bathroom essentials</span><i />
+                    <span>Local guidance</span>
+                  </div>
                 </div>
-              </div>
+
+                <div className="home-hero-art" aria-label="A warm modern tile showroom illustration">
+                  <div className="home-hero-art-label">A considered start to every space</div>
+                  <div className="hero-building-card">
+                    <div className="hero-building-sign">BUILDsy<small>Tiles & Sanitaryware</small></div>
+                    <div className="hero-building-facade">
+                      <div className="hero-facade-pillar pillar-left" />
+                      <div className="hero-facade-pillar pillar-right" />
+                      <div className="hero-glass-door"><span /><span /></div>
+                      <div className="hero-facade-planter planter-left"><b /><b /><b /></div>
+                      <div className="hero-facade-planter planter-right"><b /><b /><b /></div>
+                    </div>
+                    <div className="hero-building-step" />
+                  </div>
+                  <div className="hero-swatch-card"><span /><span /><span /><small>STONE · FORM · FINISH</small></div>
+                  <div className="hero-location-card"><b>01</b><span>Visit our<br />Dehradun showroom</span></div>
+                </div>
+              </section>
 
               {/* Stack sections */}
               <div className="classic-section"><TilesSection /></div>

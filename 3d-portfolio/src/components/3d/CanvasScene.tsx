@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { PerspectiveCamera, ScrollControls } from '@react-three/drei'
+import { PerspectiveCamera } from '@react-three/drei'
 import { Suspense, useState, useEffect } from 'react'
 import Facade from './Facade'
 import Corridor from './Corridor'
@@ -7,7 +7,7 @@ import { useStore } from '../../store/useStore'
 
 export default function CanvasScene({ loaded }: { loaded: boolean }) {
   const [stage, setStage] = useState<'facade' | 'corridor'>('facade')
-  const { theme, view, setActiveSection } = useStore()
+  const { theme, view, activeSection, setActiveSection } = useStore()
   const isDark = theme === 'dark'
 
   // If view changes to classic, we hide the canvas in CSS, but it stays mounted.
@@ -23,16 +23,14 @@ export default function CanvasScene({ loaded }: { loaded: boolean }) {
         <directionalLight position={[5, 8, 5]} intensity={isDark ? 0.2 : 0.5} color={isDark ? '#a8a49a' : '#fff8e7'} />
 
         <Suspense fallback={null}>
-          <PerspectiveCamera makeDefault position={[0, 1.8, 8]} fov={60} />
+          <PerspectiveCamera makeDefault position={stage === 'facade' ? [0, 2.2, 10.5] : [0, 1.8, 8]} fov={60} />
 
           {loaded && stage === 'facade' && (
             <Facade onEnter={() => setStage('corridor')} isDark={isDark} />
           )}
 
           {loaded && stage === 'corridor' && (
-            <ScrollControls pages={8} damping={0.2} distance={1.0}>
-              <Corridor onSectionOpen={setActiveSection} isDark={isDark} />
-            </ScrollControls>
+            <Corridor onSectionOpen={setActiveSection} isDark={isDark} controlsEnabled={!activeSection} />
           )}
         </Suspense>
       </Canvas>
