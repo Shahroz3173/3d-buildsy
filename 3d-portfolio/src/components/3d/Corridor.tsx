@@ -102,11 +102,13 @@ export default function Corridor({ onSectionOpen, isDark, controlsEnabled = true
   const keys = useRef(new Set<string>())
   const look = useRef({ yaw: 0, pitch: 0 })
   const wheelSpeed = useRef(0)
+  const touchForward = useRef(0)
 
   useEffect(() => {
     const canvas = gl.domElement
     const heldKeys = keys.current
     let dragging = false
+    let touchDragging = false
     let previousPointer = { x: 0, y: 0 }
     const oldTouchAction = canvas.style.touchAction
     canvas.style.touchAction = 'none'
@@ -128,6 +130,7 @@ export default function Corridor({ onSectionOpen, isDark, controlsEnabled = true
     const onPointerDown = (event: PointerEvent) => {
       if (!controlsEnabled || event.button !== 0) return
       dragging = true
+      touchDragging = event.pointerType === 'touch'
       previousPointer = { x: event.clientX, y: event.clientY }
     }
     const onPointerMove = (event: PointerEvent) => {
@@ -136,9 +139,14 @@ export default function Corridor({ onSectionOpen, isDark, controlsEnabled = true
       const dy = event.clientY - previousPointer.y
       previousPointer = { x: event.clientX, y: event.clientY }
       look.current.yaw -= dx * 0.004
-      look.current.pitch = THREE.MathUtils.clamp(look.current.pitch - dy * 0.004, -0.75, 0.75)
+      if (touchDragging) {
+        // On touch screens, a vertical swipe walks the camera through the corridor.
+        touchForward.current = THREE.MathUtils.clamp(touchForward.current - dy * 0.025, -3, 3)
+      } else {
+        look.current.pitch = THREE.MathUtils.clamp(look.current.pitch - dy * 0.004, -0.75, 0.75)
+      }
     }
-    const onPointerUp = () => { dragging = false }
+    const onPointerUp = () => { dragging = false; touchDragging = false }
 
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
@@ -183,10 +191,11 @@ export default function Corridor({ onSectionOpen, isDark, controlsEnabled = true
     const length = Math.hypot(forward, strafe) || 1
     const speed = 5 * delta
 
-    camera.position.x += ((forward * forwardX + strafe * rightX) / length) * speed
-    camera.position.z += ((forward * forwardZ + strafe * rightZ) / length + wheelSpeed.current) * speed
+    camera.position.x += ((forward * forwardX + strafe * rightX) / length) * speed + touchForward.current * forwardX
+    camera.position.z += ((forward * forwardZ + strafe * rightZ) / length + wheelSpeed.current) * speed + touchForward.current * forwardZ
     camera.position.y += vertical * speed
     wheelSpeed.current *= Math.exp(-4 * delta)
+    touchForward.current *= Math.exp(-8 * delta)
 
     // Keep the camera inside the walkable corridor volume.
     camera.position.x = THREE.MathUtils.clamp(camera.position.x, -3.1, 3.1)
